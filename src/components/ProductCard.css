@@ -1,0 +1,133 @@
+.pcard {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+/* ══ IMAGE WRAP ══ */
+.pcard__wrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  background: var(--card-bg);
+  transition: background 0.5s;
+  cursor: pointer;
+  will-change: transform;
+}
+
+.pcard__wrap--tall   { aspect-ratio: 3 / 5; }
+.pcard__wrap--wide   { aspect-ratio: 4 / 3; }
+.pcard__wrap--square { aspect-ratio: 1 / 1; }
+
+/* ══ IMAGES ══ */
+.pcard__img--default {
+  position: absolute;
+  inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  z-index: 1;
+  transform: scale(1);
+  will-change: transform, opacity;
+  transition: transform 0.85s cubic-bezier(0.22, 1, 0.36, 1),
+              opacity   0.75s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.pcard:hover .pcard__img--default {
+  transform: scale(1.04);
+  opacity: 0;
+}
+
+.pcard__hover-clip {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  overflow: hidden;
+  clip-path: inset(100% 0 0 0);
+  will-change: clip-path;
+  transition: clip-path 0.85s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.pcard:hover .pcard__hover-clip {
+  clip-path: inset(0% 0 0 0);
+}
+
+.pcard__img--hover {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  transform: translateY(24px);
+  will-change: transform;
+  transition: transform 0.85s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.pcard:hover .pcard__img--hover {
+  transform: translateY(0);
+}
+
+/* ══ META ══ */
+.pcard__meta {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding: 0 2px;
+}
+
+.pcard__name {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--fg);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: color 0.5s;
+}
+
+.pcard__tag {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.62rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent, #ff2200);
+  transition: color 0.5s;
+}
+
+/* ══ INFO ROW ══ */
+.pcard__info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2px;
+}
+
+.pcard__price {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.88rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--fg);
+  transition: color 0.5s;
+}
+
+.pcard__btn {
+  width: 26px; height: 26px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--fg);
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.25s, color 0.25s, border-color 0.5s;
+}
+
+.pcard__btn:hover {
+  background: var(--btn-bg);
+  color: var(--btn-fg);
+}

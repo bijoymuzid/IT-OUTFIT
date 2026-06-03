@@ -1,0 +1,392 @@
+/* ═══════════════════════════════════════════
+   PRODUCT DETAIL PAGE — pdp
+═══════════════════════════════════════════ */
+
+.pdp {
+  display: flex;
+  min-height: 100vh;
+  background: #f0ece4;
+  color: #111;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+/* ── LEFT: gallery ── */
+.pdp__gallery {
+  position: relative;
+  width: 56%;
+  flex-shrink: 0;
+  background: #e8e3db;
+}
+
+.pdp__img-wrap {
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  position: sticky; /* each image sticky so they "replace" each other */
+  top: 0;
+}
+
+/* simple stacked approach — each wrap is full height */
+.pdp__img-wrap {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.pdp__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+}
+
+/* ── dot indicators (bottom-left of gallery) ── */
+.pdp__dots {
+  position: fixed;
+  left: calc(56% - 32px);
+  bottom: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  z-index: 10;
+}
+
+.pdp__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  border: 1px solid #111;
+  background: transparent;
+  cursor: pointer;
+  padding: 0;
+  transition: background 0.25s ease;
+}
+
+.pdp__dot--active {
+  background: #111;
+}
+
+/* ── RIGHT: sticky info panel ── */
+.pdp__panel {
+  flex: 1;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+  display: flex;
+  align-items: flex-start;
+  padding: 56px 60px 56px 52px;
+  scrollbar-width: none;
+}
+
+.pdp__panel::-webkit-scrollbar { display: none; }
+
+.pdp__info {
+  width: 100%;
+  padding-top: 8px;
+}
+
+/* ── back button ── */
+.pdp__back {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  color: #555;
+  padding: 0;
+  margin-bottom: 52px;
+  transition: color 0.2s ease;
+  text-transform: uppercase;
+}
+
+.pdp__back:hover { color: #111; }
+
+.pdp__back svg {
+  transition: transform 0.2s ease;
+}
+
+.pdp__back:hover svg {
+  transform: translateX(-3px);
+}
+
+/* ── name ── */
+.pdp__name {
+  font-size: clamp(2.4rem, 4vw, 3.4rem);
+  font-weight: 400;
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  margin: 0 0 20px;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+/* ── price ── */
+.pdp__price {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 1.55rem;
+  font-weight: 300;
+  letter-spacing: 0.01em;
+  color: #111;
+  margin: 0 0 28px;
+}
+
+/* ── description ── */
+.pdp__desc {
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 0.95rem;
+  line-height: 1.75;
+  color: #444;
+  margin: 0 0 36px;
+  max-width: 380px;
+}
+
+/* ── sizes ── */
+.pdp__sizes {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 32px;
+  flex-wrap: wrap;
+}
+
+.pdp__size {
+  width: 44px;
+  height: 44px;
+  border: 1px solid #ccc;
+  background: transparent;
+  cursor: pointer;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #444;
+  transition: border-color 0.2s, color 0.2s, background 0.2s;
+}
+
+.pdp__size:hover {
+  border-color: #111;
+  color: #111;
+}
+
+.pdp__size--active {
+  background: #111;
+  border-color: #111;
+  color: #f0ece4;
+}
+
+/* ── qty row ── */
+.pdp__qty-row {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  margin-bottom: 20px;
+  width: fit-content;
+}
+
+.pdp__qty-btn {
+  width: 38px;
+  height: 38px;
+  border: 1px solid #ccc;
+  background: transparent;
+  cursor: pointer;
+  font-size: 1.1rem;
+  font-weight: 300;
+  color: #111;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.pdp__qty-btn:hover {
+  border-color: #111;
+  background: #111;
+  color: #f0ece4;
+}
+
+.pdp__qty-num {
+  width: 52px;
+  height: 38px;
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 0.88rem;
+  font-weight: 300;
+  letter-spacing: 0.06em;
+  color: #111;
+}
+
+/* ── rule ── */
+.pdp__rule {
+  height: 1px;
+  background: #ccc;
+  margin: 0 0 28px;
+  width: 100%;
+}
+
+/* ── add to bag ── */
+.pdp__add {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0;
+  background: #111;
+  color: #f0ece4;
+  border: none;
+  cursor: pointer;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 16px 44px;
+  overflow: hidden;
+  transition: background 0.3s ease;
+  margin-bottom: 48px;
+}
+
+.pdp__add::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: #2a2a2a;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  z-index: 0;
+}
+
+.pdp__add:hover::before { transform: scaleX(1); }
+
+.pdp__add span {
+  position: relative;
+  z-index: 1;
+}
+
+/* ── meta list ── */
+.pdp__meta {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  border-top: 1px solid #ddd;
+}
+
+.pdp__meta li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 13px 0;
+  border-bottom: 1px solid #ddd;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 10.5px;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.pdp__meta li span:first-child { color: #999; }
+.pdp__meta li span:last-child  { color: #111; font-weight: 500; }
+
+/* ── animate helper (GSAP target) ── */
+.pdp__animate { opacity: 0; }
+
+/* ══════════════════════════════════════
+   RESPONSIVE
+══════════════════════════════════════ */
+
+@media (max-width: 900px) {
+  .pdp {
+    flex-direction: column;
+  }
+
+  .pdp__gallery {
+    width: 100%;
+  }
+
+  .pdp__img-wrap {
+    height: 70vw;
+    min-height: 320px;
+    max-height: 520px;
+  }
+
+  .pdp__dots {
+    position: absolute;
+    left: auto;
+    right: 20px;
+    bottom: 20px;
+    flex-direction: row;
+  }
+
+  .pdp__panel {
+    position: static;
+    height: auto;
+    padding: 40px 24px 64px;
+  }
+
+  .pdp__name { font-size: 2.2rem; }
+}
+
+@media (max-width: 560px) {
+  .pdp__img-wrap {
+    height: 65vw;
+    min-height: 260px;
+    max-height: 400px;
+  }
+
+  .pdp__panel {
+    padding: 28px 16px 48px;
+  }
+
+  .pdp__name {
+    font-size: 1.8rem;
+  }
+
+  .pdp__price {
+    font-size: 1.3rem;
+  }
+
+  .pdp__desc {
+    max-width: 100%;
+    font-size: 0.88rem;
+  }
+
+  .pdp__back {
+    margin-bottom: 32px;
+    font-size: 10px;
+  }
+
+  .pdp__add {
+    width: 100%;
+    justify-content: center;
+    padding: 14px 24px;
+  }
+
+  .pdp__sizes {
+    gap: 6px;
+  }
+
+  .pdp__size {
+    width: 40px;
+    height: 40px;
+    font-size: 10px;
+  }
+
+  .pdp__dots {
+    right: 12px;
+    bottom: 12px;
+    gap: 6px;
+  }
+
+  .pdp__dot {
+    width: 5px;
+    height: 5px;
+  }
+}

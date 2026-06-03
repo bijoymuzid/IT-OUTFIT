@@ -1,0 +1,5 @@
+.app {
+  min-height: 100vh;
+  background: var(--bg);
+  transition: background 0.5s;
+}
